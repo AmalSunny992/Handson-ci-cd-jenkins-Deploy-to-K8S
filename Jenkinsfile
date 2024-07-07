@@ -67,7 +67,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'dockertoken', toolName: 'docker') {
-                        sh "docker build -t adijaiswal/ekart:latest -f docker/Dockerfile ."
+                        sh "docker build -t amalsunny992/ekart:latest -f docker/Dockerfile ."
                     }
                 }
             }
@@ -75,7 +75,7 @@ pipeline {
         
         stage('Trivy Scan') {
             steps {
-                    sh "trivy image adijaiswal/ekart:latest > trivy-report.txt"
+                    sh "trivy image amalsunny992/ekart:latest > trivy-report.txt"
             }
         }
         

@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/AmalSunny992/ci-cd.git'
+                git branch: 'main', url: 'https://github.com/AmalSunny992/weather-app.git'
             }
         }
        
@@ -35,7 +35,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonar') {
-                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=EKART -Dsonar.projectName=EKART \
+                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=weather-app -Dsonar.projectName=weather-app \
                     -Dsonar.java.binaries=.'''
                     
                 }
@@ -67,7 +67,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'dockertoken', toolName: 'docker') {
-                        sh "docker build -t amalsunny992/ekart:latest -f docker/Dockerfile ."
+                        sh "docker build -t amalsunny992/weather-app:latest -f docker/Dockerfile ."
                     }
                 }
             }
@@ -75,7 +75,7 @@ pipeline {
         
         stage('Trivy Scan') {
             steps {
-                    sh "trivy image amalsunny992/ekart:latest > trivy-report.txt"
+                    sh "trivy image amalsunny992/weather-app:latest > trivy-report.txt"
             }
         }
         
@@ -83,7 +83,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'dockertoken', toolName: 'docker') {
-                        sh "docker push amalsunny992/ekart:latest"
+                        sh "docker push amalsunny992/weather-app:latest"
                     }
                 }
             }
@@ -92,7 +92,7 @@ pipeline {
     stage('Kubernetes Deploy') {
             steps {
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8-token', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://172.31.43.67:6443') {
-                    sh "kubectl apply -f deploymentservice.yml -n webapps"
+                    sh "kubectl apply -f kubernetes/deploymentservice.yml -n webapps"
                     sh "kubectl get svc -n webapps "
                     }
             }

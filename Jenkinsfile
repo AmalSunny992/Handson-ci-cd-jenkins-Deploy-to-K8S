@@ -66,8 +66,12 @@ pipeline {
         stage('Docker Build and Tag Image') {
             steps {
                 script {
+                    // Fetch the Dockerfile from the external repository
+                    sh "curl -o Dockerfile https://raw.githubusercontent.com/AmalSunny992/ci-cd/main/docker/Dockerfile"
+                    
                     withDockerRegistry(credentialsId: 'dockertoken', toolName: 'docker') {
-                        sh "docker build -t amalsunny992/weather-app:latest -f docker/Dockerfile ."
+                        // Build the Docker image using the fetched Dockerfile
+                        sh "docker build -t amalsunny992/weather-app:latest -f Dockerfile ."
                     }
                 }
             }

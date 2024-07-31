@@ -11,6 +11,8 @@ The pipeline includes stages for code checkout, compilation, testing, static cod
 
 ## Jenkins Pipeline
 
+Here is the Jenkinsfile used in this repository: [Jenkins File](./Jenkinsfile)
+
 The Jenkins pipeline defined in the `Jenkinsfile` includes the following stages:
 
 ### 1. Git Checkout
@@ -59,9 +61,6 @@ Deploys the application to a Kubernetes cluster using a deployment configuration
 ![image](https://github.com/user-attachments/assets/c787b438-0c81-478d-bbaa-8505b27d52a6)
 ![image](https://github.com/user-attachments/assets/758db047-2fa6-4013-9f83-fe2619a0b02e)
 ![image](https://github.com/user-attachments/assets/2c56fe7f-4249-4ab3-99ce-5fe34f7e906e)
-
-
-Here is the Jenkinsfile used in this repository: [Jenkins File](./Jenkinsfile)
 
 
 ## Dockerfile

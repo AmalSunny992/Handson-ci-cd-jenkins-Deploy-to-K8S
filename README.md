@@ -3,6 +3,9 @@
 This repository demonstrates a CI/CD pipeline using Jenkins to deploy a Java application to Kubernetes. 
 The pipeline includes stages for code checkout, compilation, testing, static code analysis, dependency checking, packaging, deployment to Nexus, Docker image creation, security scanning, and deployment to Kubernetes.
 
+![image](https://github.com/user-attachments/assets/47584e47-d336-4486-9cd6-f3ff04f451a8)
+
+
 ## Repository Structure
 
 - **Jenkinsfile**: Defines the Jenkins pipeline stages.

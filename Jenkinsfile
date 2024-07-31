@@ -97,7 +97,7 @@ pipeline {
             steps {
                     // Fetch the Dockerfile from the external repository
                     sh "curl -o Dockerfile https://raw.githubusercontent.com/AmalSunny992/ci-cd/main/kubernetes/deploymentservice.yml"
-                    withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8-token', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://172.31.43.67:6443') {
+                    withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8-token', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://172.31.47.48:6443') {
                     sh "kubectl apply -f deploymentservice.yml -n webapps"
                     sh "kubectl get svc -n webapps "
                     }

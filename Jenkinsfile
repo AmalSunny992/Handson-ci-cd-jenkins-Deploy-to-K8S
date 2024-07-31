@@ -99,7 +99,7 @@ pipeline {
                     sh "curl -o deploymentservice.yml https://raw.githubusercontent.com/AmalSunny992/ci-cd/main/kubernetes/deploymentservice.yml"
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8-token', namespace: 'webapps1', restrictKubeConfigAccess: false, serverUrl: 'https://172.31.47.48:6443') {
                     sh "kubectl apply -f deploymentservice.yml -n webapps1"
-                    sh "kubectl get svc -n webapps "
+                    sh "kubectl get svc -n webapps1"
                     }
             }
         }
